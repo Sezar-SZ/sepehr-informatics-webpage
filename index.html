@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sepehr-Informatics</title>
+        <style>
+            body {
+                background-color: #bbbbcc;
+            }
+            #mainContainer {
+                position: absolute;
+                margin-left: auto;
+                margin-right: auto;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                text-align: center;
+                width: 80vw;
+                height: 80vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+            }
+            nav {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                cursor: pointer;
+            }
+            .navChild {
+                flex: 1;
+                padding: 3vh 0;
+                background-color: #8c70a9;
+            }
+            #snmp {
+                border: 2px solid #684575;
+                border-top: none;
+                border-bottom: none;
+            }
+            .navChild:hover {
+                background-color: #7c6099;
+            }
+            .navTxt {
+                color: white;
+            }
+            .activeMenu {
+                background-color: #5f4a75;
+            }
+            .activeMenu:hover {
+                background-color: #5f4a75;
+            }
+
+            main {
+                background-color: #e0e0e0;
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+                overflow-x: auto;
+            }
+            .status-grid {
+                margin: 10px auto;
+                width: 80%;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+            .grid-child {
+                border-bottom: 1px solid #c489c4;
+                padding: 3vh 2vw;
+            }
+
+            .status-title {
+                text-align: start;
+                color: #1e00ac;
+            }
+            .status-data {
+                text-align: start;
+            }
+            .no-border {
+                border: none;
+            }
+
+            .new-pass {
+                margin-top: 7vh;
+            }
+            .new-pass > span {
+                color: #1e00ac;
+                margin-right: 10px;
+            }
+            button {
+                background-color: #ac90c9;
+                outline: none;
+                border: none;
+                border-radius: 7px;
+                padding: 11px 15px;
+                cursor: pointer;
+                max-width: 80px;
+            }
+            button:hover {
+                background-color: #cbb0d9;
+            }
+            input {
+                height: 35px;
+                padding: 0 10px;
+                border: solid 1px #fff;
+                border-radius: 5px;
+            }
+
+            #snmp-form {
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                margin-top: 10vh;
+                justify-content: center;
+                align-items: start;
+            }
+            #snmp-input-container {
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                row-gap: 20px;
+                align-items: center;
+            }
+            #snmp-input-container > label {
+                text-align: start;
+                color: #1e00ac;
+            }
+            #snmp-button-container {
+                display: flex;
+                justify-content: end;
+                align-items: end;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="mainContainer">
+            <nav>
+                <div id="status" class="navChild">
+                    <span class="navTxt">Status</span>
+                </div>
+                <div id="snmp" class="navChild">
+                    <span class="navTxt">SNMP</span>
+                </div>
+                <div id="ip" class="navChild">
+                    <span class="navTxt">IP</span>
+                </div>
+            </nav>
+            <main></main>
+        </div>
+        <script>
+            const ip = "192.168.31.10";
+            const subnetMask = "255.255.255.0";
+            const gateway = "192.168.31.1";
+            const snmpTrap = "0.0.0.0";
+            const deviceName = "sepehr-informatic";
+            const snmpOID = "xxxxxxx";
+            const macAddress = "00-B0-D0-63-C2-26";
+            const authKey = "authKey1";
+            const encryptionType = "X";
+            const privateKey = "privateKey1";
+
+            const statusMenuContent = `<div class="status-grid"> <span class="status-title grid-child">ip</span> <span class="status-data grid-child">${ip}</span> <span class="status-title grid-child">Subnet Mask</span> <span class="status-data grid-child">${subnetMask}</span> <span class="status-title grid-child">Gateway</span> <span class="status-data grid-child">${gateway}</span> <span class="status-title grid-child">SNMP Trap Host</span> <span class="status-data grid-child">${snmpTrap}</span> <span class="status-title grid-child">Device Name</span> <span class="status-data grid-child" >${deviceName}</span > <span class="status-title grid-child" >SNMP OID Parameter</span > <span class="status-data grid-child">${snmpOID}</span> <span class="status-title grid-child">Mac Address</span> <span class="status-data grid-child" >${macAddress}</span > <span class="status-title grid-child">Auth Key</span> <span class="status-data grid-child">${authKey}</span> <span class="status-title grid-child no-border" >Encryption Type</span > <span class="status-data grid-child no-border">${encryptionType}</span> <span class="status-title grid-child no-border" >Private Key</span > <span class="status-data grid-child no-border" >${privateKey}</span > </div><form class="new-pass"> <span>New Password</span> <input type="password"/> <button>Save</button> </form>`;
+            const snmpMenuContent = `<form id="snmp-form"> <div id="snmp-input-container"> <label>Authentication Key</label> <input type="text"/> <label>Encryption Type</label> <input type="text"/> <label>Private Key</label> <input type="text"/> <label>Encryption Type</label> <input type="text"/> <div></div><div id="snmp-button-container"> <button type="submit">Save</button> </div></div></form>`;
+            const ipMenuContent = ` <form id="snmp-form"> <div id="snmp-input-container"> <label>IP</label> <input type="text"/> <label>Subnet Mask</label> <input type="text"/> <label>Gateway</label> <input type="text"/> <label>Device Name</label> <input type="text"/> <div></div><div id="snmp-button-container"> <button type="submit">Save</button> </div></div></form>`;
+            const statusButton = document.querySelector("#status");
+            const snmpButton = document.querySelector("#snmp");
+            const ipButton = document.querySelector("#ip");
+            const mainElement = document.querySelector("main");
+
+            statusButton.classList.add("activeMenu");
+            mainElement.innerHTML = statusMenuContent;
+
+            statusButton.addEventListener("click", () => {
+                statusButton.classList.add("activeMenu");
+                snmpButton.classList.remove("activeMenu");
+                ipButton.classList.remove("activeMenu");
+                mainElement.innerHTML = statusMenuContent;
+            });
+            snmpButton.addEventListener("click", () => {
+                statusButton.classList.remove("activeMenu");
+                snmpButton.classList.add("activeMenu");
+                ipButton.classList.remove("activeMenu");
+                mainElement.innerHTML = snmpMenuContent;
+            });
+            ipButton.addEventListener("click", () => {
+                statusButton.classList.remove("activeMenu");
+                snmpButton.classList.remove("activeMenu");
+                ipButton.classList.add("activeMenu");
+                mainElement.innerHTML = ipMenuContent;
+            });
+        </script>
+    </body>
+</html>
