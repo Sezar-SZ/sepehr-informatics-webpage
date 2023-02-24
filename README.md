@@ -1,3 +1,3 @@
-To visit Main Page, Click [Here](http://185.110.188.155/sepehr-informatics/)
+[main page](http://185.110.188.155/sepehr-informatics/)
 
-To visit Login Page, Click [Here](http://185.110.188.155/sepehr-informatics/login.html)
+[login page](http://185.110.188.155/sepehr-informatics/login.html)
