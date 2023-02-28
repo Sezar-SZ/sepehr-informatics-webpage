@@ -64,6 +64,10 @@
                 margin-top: 4vh;
                 font-weight: lighter;
             }
+            img {
+                object-fit: contain;
+                width: 9vw;
+            }
 
             /* #snmp-form {
                 margin: 0 auto;
@@ -95,7 +99,10 @@
         <div id="mainContainer">
             <main>
                 <form id="snmp-form">
-                    <h1>Sepehr Environment Monitoring</h1>
+                    <header>
+                        <img src="/iotlogo.png" alt="IOT Logo" />
+                        <h1>Sepehr Environment Monitoring</h1>
+                    </header>
                     <div id="snmp-input-container" style="margin-top: 10vh">
                         <label>Username</label>
                         <input type="text" />
