@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Sepehr-Informatics</title>
+        <title>Login | Sepehr Environment Monitoring</title>
         <style>
             body {
                 background-color: #101c2c;
@@ -30,6 +30,7 @@
             main {
                 background-color: #e0e0e0;
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 /* width: 50%;
@@ -38,16 +39,6 @@
                 padding-top: 3vmin;
                 overflow-y: auto;
                 overflow-x: auto;
-            }
-            .status-grid {
-                margin: 10px auto;
-                width: 80%;
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr;
-            }
-            .grid-child {
-                border-bottom: 1px solid #c489c4;
-                padding: 3vh 2vw;
             }
 
             button {
@@ -60,7 +51,7 @@
                 max-width: 80px;
             }
             button:hover {
-                background-color: #9e5ad5;
+                background-color: #af6de7;
             }
             input {
                 height: 35px;
@@ -68,21 +59,25 @@
                 border: solid 1px #fff;
                 border-radius: 5px;
             }
+            h1 {
+                color: #0e005f;
+                margin-top: 4vh;
+                font-weight: lighter;
+            }
 
-            #snmp-form {
+            /* #snmp-form {
                 margin: 0 auto;
+                padding: 0;
                 display: flex;
                 flex-direction: column;
-                /* margin-top: 10vh; */
                 justify-content: center;
-                align-items: start;
-            }
+                align-items: center;
+            } */
             #snmp-input-container {
                 margin: 0 auto;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 row-gap: 20px;
-                align-items: center;
             }
             #snmp-input-container > label {
                 text-align: start;
@@ -100,6 +95,7 @@
         <div id="mainContainer">
             <main>
                 <form id="snmp-form">
+                    <h1>Sepehr Environment Monitoring</h1>
                     <div id="snmp-input-container" style="margin-top: 10vh">
                         <label>Username</label>
                         <input type="text" />
