@@ -94,20 +94,8 @@
                 display: none;
             }
 
-            .change-pass {
-                display: flex;
-                justify-content: start;
-                padding: 5vh 2vw;
-                padding-bottom: 1vh;
-            }
-            .change-pass > span {
-                text-align: left;
-                color: #541054;
-                cursor: pointer;
-                user-select: none;
-            }
             .new-pass {
-                margin: 0;
+                margin-top: 7vh;
             }
             .new-pass > span {
                 color: #1e00ac;
@@ -126,6 +114,12 @@
                 background-color: #9e5ad5;
             }
             input {
+                height: 35px;
+                padding: 0 10px;
+                border: solid 1px #fff;
+                border-radius: 5px;
+            }
+            select {
                 height: 35px;
                 padding: 0 10px;
                 border: solid 1px #fff;
@@ -157,6 +151,10 @@
                 align-items: end;
                 width: 100%;
             }
+            a {
+                all: unset;
+                cursor: pointer;
+            }
             footer {
                 display: flex;
                 justify-content: center;
@@ -182,7 +180,16 @@
                 <main></main>
             </div>
         </div>
-        <footer>Sepehr Informatics © | info@sepehranformatic.com</footer>
+        <footer>
+            <a
+                href="https://sepehranformatic.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Copyright Sepehranformatic 2023. All rights reserved© |
+                info@sepehranformatic.com
+            </a>
+        </footer>
         <script>
             const ip = "192.168.31.10";
             const subnetMask = "255.255.255.0";
@@ -195,15 +202,13 @@
             const encryptionType = "X";
             const privateKey = "privateKey1";
 
-            const statusMenuContent = `<div class="status-grid"> <span class="status-title grid-child">ip</span> <span class="status-data grid-child">${ip}</span> <span class="status-title grid-child">Subnet Mask</span> <span class="status-data grid-child" >${subnetMask}</span > <span class="status-title grid-child">Gateway</span> <span class="status-data grid-child">${gateway}</span> <span class="status-title grid-child" >SNMP Trap Host</span > <span class="status-data grid-child">${snmpTrap}</span> <span class="status-title grid-child">Device Name</span> <span class="status-data grid-child" >${deviceName}</span > <span class="status-title grid-child" >SNMP OID Parameter</span > <span class="status-data grid-child">${snmpOID}</span> <span class="status-title grid-child">Mac Address</span> <span class="status-data grid-child" >${macAddress}</span > <span class="status-title grid-child">Auth Key</span> <span class="status-data grid-child">${authKey}</span> <span class="status-title grid-child no-border" >Encryption Type</span > <span class="status-data grid-child no-border" >${encryptionType}</span > <span class="status-title grid-child no-border" >Private Key</span > <span class="status-data grid-child no-border" >${privateKey}</span > <div class="change-pass"> <span id="change-password">Change Password</span> </div></div><form id="new-password-form" class="new-pass no-display"> <span>New Password</span> <input type="password"/> <button>Save</button> </form>`;
-            const snmpMenuContent = `<form id="snmp-form"> <div id="snmp-input-container"> <label>Authentication Key</label> <input type="text"/> <label>Encryption Type</label> <input type="text"/> <label>Private Key</label> <input type="text"/> <label>Encryption Type</label> <input type="text"/> <div></div><div id="snmp-button-container"> <button type="submit">Save</button> </div></div></form>`;
-            const ipMenuContent = ` <form id="snmp-form"> <div id="snmp-input-container"> <label>IP</label> <input type="text"/> <label>Subnet Mask</label> <input type="text"/> <label>Gateway</label> <input type="text"/> <label>Device Name</label> <input type="text"/> <div></div><div id="snmp-button-container"> <button type="submit">Save</button> </div></div></form>`;
+            const statusMenuContent = `<div class="status-grid"> <span class="status-title grid-child">Mac Address</span> <span class="status-data grid-child" >${macAddress}</span > <span class="status-title grid-child">ip</span> <span class="status-data grid-child">${ip}</span> <span class="status-title grid-child">Gateway</span> <span class="status-data grid-child">${gateway}</span> <span class="status-title grid-child">Subnet Mask</span> <span class="status-data grid-child" >${subnetMask}</span > <span class="status-title grid-child" >SNMP Trap Host</span > <span class="status-data grid-child">${snmpTrap}</span> <span class="status-title grid-child">Device Name</span> <span class="status-data grid-child" >${deviceName}</span > <span class="status-title grid-child no-border" >SNMP OID Parameter</span > <span class="status-data grid-child no-border" >${snmpOID}</span > <span class="status-title grid-child no-border" >Auth Key</span > <span class="status-data grid-child no-border" >${authKey}</span > </div><form id="new-password-form" class="new-pass"> <span>New Password</span> <input type="password"/> <button>Save</button> </form>`;
+            const snmpMenuContent = ` <form id="snmp-form"> <div id="snmp-input-container"> <label>Authentication Key</label> <input type="text"/> <label>Authentication Type</label> <select name="auth" id="auth"> <option value="des">des</option> <option value="aes">aes</option> </select> <label>Private Key</label> <input type="text"/> <label>Private Type</label> <select name="private" id="private"> <option value="md5">md5</option> <option value="sha">sha</option> </select> <label>SNMP Trap Host</label> <input type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"/> <div></div><div id="snmp-button-container"> <button type="submit">Save</button> </div></div></form>`;
+            const ipMenuContent = `<form id="snmp-form"> <div id="snmp-input-container"> <label>IP</label> <input type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"/> <label>Subnet Mask</label> <input type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"/> <label>Gateway</label> <input type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"/> <label>Device Name</label> <input type="text"/> <div></div><div id="snmp-button-container"> <button type="submit">Save</button> </div></div></form>`;
             const statusButton = document.querySelector("#status");
             const snmpButton = document.querySelector("#snmp");
             const ipButton = document.querySelector("#ip");
             const mainElement = document.querySelector("main");
-
-            let isChangePassword = false;
 
             statusButton.classList.add("activeMenu");
             mainElement.innerHTML = statusMenuContent;
@@ -213,8 +218,6 @@
                 snmpButton.classList.remove("activeMenu");
                 ipButton.classList.remove("activeMenu");
                 mainElement.innerHTML = statusMenuContent;
-                isChangePassword = false;
-                console.log(isChangePassword);
             });
             snmpButton.addEventListener("click", () => {
                 statusButton.classList.remove("activeMenu");
@@ -227,21 +230,6 @@
                 snmpButton.classList.remove("activeMenu");
                 ipButton.classList.add("activeMenu");
                 mainElement.innerHTML = ipMenuContent;
-            });
-
-            document.addEventListener("click", (event) => {
-                if (event.target.id === "change-password") {
-                    const newPasswordForm =
-                        document.querySelector("#new-password-form");
-                    isChangePassword = !isChangePassword;
-                    console.log(isChangePassword);
-
-                    if (isChangePassword) {
-                        newPasswordForm.classList.remove("no-display");
-                    } else {
-                        newPasswordForm.classList.add("no-display");
-                    }
-                }
             });
         </script>
     </body>
