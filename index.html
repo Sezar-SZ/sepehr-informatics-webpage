@@ -176,13 +176,13 @@
             }
 
             .login-main {
+                width: auto;
+                height: auto;
                 background-color: #e0e0e0;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                /* width: 50%;
-                height: 50%; */
                 padding: 7vmin 15vmin;
                 padding-top: 3vmin;
                 overflow-y: auto;
@@ -216,32 +216,7 @@
         </style>
     </head>
     <body>
-        <div class="index-mainContainer">
-            <div class="tempContainer">
-                <nav>
-                    <div id="status" class="navChild">
-                        <span class="navTxt">Status</span>
-                    </div>
-                    <div id="snmp" class="navChild">
-                        <span class="navTxt">SNMP</span>
-                    </div>
-                    <div id="ip" class="navChild">
-                        <span class="navTxt">IP</span>
-                    </div>
-                </nav>
-                <main></main>
-            </div>
-        </div>
-        <footer>
-            <a
-                href="https://sepehranformatic.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Copyright Sepehranformatic 2023. All rights reserved© |
-                info@sepehranformatic.com
-            </a>
-        </footer>
+        <div id="app"></div>
         <script>
             const isLoggedIn = false;
 
@@ -256,9 +231,23 @@
             const encryptionType = "X";
             const privateKey = "privateKey1";
 
+            const indexPageHtml = `<div class="index-mainContainer"> <div class="tempContainer"> <nav> <div id="status" class="navChild"> <span class="navTxt">Status</span> </div><div id="snmp" class="navChild"> <span class="navTxt">SNMP</span> </div><div id="ip" class="navChild"> <span class="navTxt">IP</span> </div></nav> <main></main> </div></div><footer> <a href="https://sepehranformatic.com/" target="_blank" rel="noopener noreferrer" > Copyright Sepehranformatic 2023. All rights reserved© | info@sepehranformatic.com </a> </footer>`;
+            const loginPageHtml = `<div class="login-main-container"> <main class="login-main"> <form> <header> <img src="iotlogo.png" alt="IOT Logo"/> <h1>Sepehr Environment Monitoring</h1> </header> <div class="login-input-container" style="margin-top: 10vh"> <label>Username</label> <input type="text"/> <label>Password</label> <input type="password"/> <div></div><div class="login-button-container"> <button type="submit">Login</button> </div></div></form> </main> </div>`;
+
             const statusMenuContent = ` <div class="status-grid"> <span class="status-title grid-child">Mac Address</span> <span class="status-data grid-child" >${macAddress}</span > <span class="status-title grid-child">Device Name</span> <span class="status-data grid-child" >${deviceName}</span > <span class="status-title grid-child">ip</span> <span class="status-data grid-child">${ip}</span> <span class="status-title grid-child">Subnet Mask</span> <span class="status-data grid-child" >${subnetMask}</span > <span class="status-title grid-child">Gateway</span> <span class="status-data grid-child">${gateway}</span> <span class="status-title grid-child" >SNMP Trap Host</span > <span class="status-data grid-child">${snmpTrap}</span> <span class="status-title grid-child no-border" >SNMP OID Parameter</span > <span class="status-data grid-child no-border" >${snmpOID}</span > </div><form id="new-password-form" class="new-pass"> <span>New Password</span> <input type="password"/> <button>Save</button> </form>`;
             const snmpMenuContent = ` <form id="snmp-form"> <div id="snmp-input-container"> <label>Authentication Key</label> <input type="text"/> <label>Authentication Type</label> <select name="auth" id="auth"><option value="md5">md5</option> <option value="sha">sha</option> </select> <label>Private Key</label> <input type="text"/> <label>Private Type</label> <select name="private" id="private"> <option value="des">des</option> <option value="aes">aes</option> </select> <label>SNMP Trap Host</label> <input type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"/> <div></div><div id="snmp-button-container"> <button type="submit">Save</button> </div></div></form>`;
             const ipMenuContent = `<form id="snmp-form"> <div id="snmp-input-container"> <label>IP</label> <input type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"/> <label>Subnet Mask</label> <input type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"/> <label>Gateway</label> <input type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"/> <label>Device Name</label> <input type="text"/> <div></div><div id="snmp-button-container"> <button type="submit">Save</button> </div></div></form>`;
+
+            const appElement = document.querySelector("#app");
+            if (isLoggedIn) {
+                appElement.innerHTML = indexPageHtml;
+            } else {
+                appElement.innerHTML = loginPageHtml;
+            }
+            // document.addEventListener("click", (event)=>{
+
+            // })
+
             const statusButton = document.querySelector("#status");
             const snmpButton = document.querySelector("#snmp");
             const ipButton = document.querySelector("#ip");
